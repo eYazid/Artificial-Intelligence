@@ -15,21 +15,6 @@
 # 
 # Let's get started!
 
-# ## Table of Contents
-# - [1 - Packages](#1)
-# - [2 - Loading the Dataset](#2)
-# - [3 - Neural Network Model](#3)
-# - [4 - Zero Initialization](#4)
-#     - [Exercise 1 - initialize_parameters_zeros](#ex-1)
-# - [5 - Random Initialization](#5)
-#     - [Exercise 2 - initialize_parameters_random](#ex-2)
-# - [6 - He Initialization](#6)
-#     - [Exercise 3 - initialize_parameters_he](#ex-3)
-# - [7 - Conclusions](#7)
-
-# <a name='1'></a>
-# ## 1 - Packages
-
 # In[1]:
 
 
@@ -144,15 +129,11 @@ def model(X, Y, learning_rate = 0.01, num_iterations = 15000, print_cost = True,
 # - the weight matrices $(W^{[1]}, W^{[2]}, W^{[3]}, ..., W^{[L-1]}, W^{[L]})$
 # - the bias vectors $(b^{[1]}, b^{[2]}, b^{[3]}, ..., b^{[L-1]}, b^{[L]})$
 # 
-# <a name='ex-1'></a>
-# ### Exercise 1 - initialize_parameters_zeros
 # 
 # Implement the following function to initialize all parameters to zeros. You'll see later that this does not work well since it fails to "break symmetry," but try it anyway and see what happens. Use `np.zeros((..,..))` with the correct shapes.
 
 # In[34]:
-
-
-# GRADED FUNCTION: initialize_parameters_zeros 
+ 
 
 def initialize_parameters_zeros(layers_dims):
     """
@@ -175,8 +156,6 @@ def initialize_parameters_zeros(layers_dims):
         parameters['W' + str(l)] = np.zeros((layers_dims[l],layers_dims[l-1]))
         parameters['b' + str(l)] = np.zeros((layers_dims[l],1))
         
-        
-        # YOUR CODE ENDS HERE
     return parameters
 
 
@@ -263,15 +242,9 @@ plot_decision_boundary(lambda x: predict_dec(parameters, x.T), train_X, train_Y)
 # 
 # To break symmetry, initialize the weights randomly. Following random initialization, each neuron can then proceed to learn a different function of its inputs. In this exercise, you'll see what happens when the weights are initialized randomly, but to very large values.
 # 
-# <a name='ex-2'></a>
-# ### Exercise 2 - initialize_parameters_random
-# 
 # Implement the following function to initialize your weights to large random values (scaled by \*10) and your biases to zeros. Use `np.random.randn(..,..) * 10` for weights and `np.zeros((.., ..))` for biases. You're using a fixed `np.random.seed(..)` to make sure your "random" weights  match ours, so don't worry if running your code several times always gives you the same initial values for the parameters. 
 
 # In[43]:
-
-
-# GRADED FUNCTION: initialize_parameters_random
 
 def initialize_parameters_random(layers_dims):
     """
@@ -294,9 +267,6 @@ def initialize_parameters_random(layers_dims):
     for l in range(1, L):
         parameters['W' + str(l)] = np.random.randn(layers_dims[l],layers_dims[l-1])*10
         parameters['b' + str(l)] =np.zeros((layers_dims[l],1))
-        
-        
-        # YOUR CODE ENDS HERE
 
     return parameters
 
@@ -377,15 +347,9 @@ plot_decision_boundary(lambda x: predict_dec(parameters, x.T), train_X, train_Y)
 # 
 # Finally, try "He Initialization"; this is named for the first author of He et al., 2015. (If you have heard of "Xavier initialization", this is similar except Xavier initialization uses a scaling factor for the weights $W^{[l]}$ of `sqrt(1./layers_dims[l-1])` where He initialization would use `sqrt(2./layers_dims[l-1])`.)
 # 
-# <a name='ex-3'></a>
-# ### Exercise 3 - initialize_parameters_he
-# 
 # Implement the following function to initialize your parameters with He initialization. This function is similar to the previous `initialize_parameters_random(...)`. The only difference is that instead of multiplying `np.random.randn(..,..)` by 10, you will multiply it by $\sqrt{\frac{2}{\text{dimension of the previous layer}}}$, which is what He initialization recommends for layers with a ReLU activation. 
 
 # In[56]:
-
-
-# GRADED FUNCTION: initialize_parameters_he
 
 def initialize_parameters_he(layers_dims):
     """
