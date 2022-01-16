@@ -1,29 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# # Gradient Checking
-# 
-# Welcome to the final assignment for this week! In this assignment you'll be implementing gradient checking.
-# 
-# By the end of this notebook, you'll be able to:
-# 
-# Implement gradient checking to verify the accuracy of your backprop implementation
-
-# ## Table of Contents
-# - [1 - Packages](#1)
-# - [2 - Problem Statement](#2)
-# - [3 - How does Gradient Checking work?](#3)
-# - [4 - 1-Dimensional Gradient Checking](#4)
-#     - [Exercise 1 - forward_propagation](#ex-1)
-#     - [Exercise 2 - backward_propagation](#ex-2)
-#     - [Exercise 3 - gradient_check](#ex-3)
-# - [5 - N-Dimensional Gradient Checking](#5)
-#     - [Exercise 4 - gradient_check_n](#ex-4)
-
-# <a name='1'></a>
-# ## 1 - Packages
-
-# In[3]:
 
 
 import numpy as np
@@ -72,15 +46,8 @@ get_ipython().run_line_magic('autoreload', '2')
 # 
 # The diagram above shows the key computation steps: First start with $x$, then evaluate the function $J(x)$ ("forward propagation"). Then compute the derivative $\frac{\partial J}{\partial \theta}$ ("backward propagation"). 
 # 
-# <a name='ex-1'></a>
-# ### Exercise 1 - forward_propagation
-# 
 # Implement `forward propagation`. For this simple function compute $J(.)$
 
-# In[4]:
-
-
-# GRADED FUNCTION: forward_propagation
 
 def forward_propagation(x, theta):
     """
@@ -109,16 +76,10 @@ J = forward_propagation(x, theta)
 print ("J = " + str(J))
 forward_propagation_test(forward_propagation)
 
-
-# <a name='ex-2'></a>
-# ### Exercise 2 - backward_propagation
 # 
 # Now, implement the `backward propagation` step (derivative computation) of Figure 1. That is, compute the derivative of $J(\theta) = \theta x$ with respect to $\theta$. To save you from doing the calculus, you should get $dtheta = \frac { \partial J }{ \partial \theta} = x$.
 
 # In[6]:
-
-
-# GRADED FUNCTION: backward_propagation
 
 def backward_propagation(x, theta):
     """
@@ -146,9 +107,6 @@ dtheta = backward_propagation(x, theta)
 print ("dtheta = " + str(dtheta))
 backward_propagation_test(backward_propagation)
 
-
-# <a name='ex-3'></a>
-# ### Exercise 3 - gradient_check
 # 
 # To show that the `backward_propagation()` function is correctly computing the gradient $\frac{\partial J}{\partial \theta}$, let's implement gradient checking.
 # 
@@ -170,9 +128,6 @@ backward_propagation_test(backward_propagation)
 # 
 
 # In[8]:
-
-
-# GRADED FUNCTION: gradient_check
 
 def gradient_check(x, theta, epsilon=1e-7, print_msg=False):
     """
@@ -345,9 +300,6 @@ def backward_propagation_n(X, Y, cache):
 # Now, for every single parameter in your vector, you will apply the same procedure as for the gradient_check exercise. You will store each gradient approximation in a vector `gradapprox`. If the check goes as expected, each value in this approximation must match the real gradient values stored in the `grad` vector. 
 # 
 # Note that `grad` is calculated using the function `gradients_to_vector`, which uses the gradients outputs of the `backward_propagation_n` function.
-# 
-# <a name='ex-4'></a>
-# ### Exercise 4 - gradient_check_n
 # 
 # Implement the function below.
 # 
