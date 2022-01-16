@@ -90,12 +90,10 @@ print ("y = " + str(train_set_y[:, index]) + ", it's a '" + classes[np.squeeze(t
 # Remember that `train_set_x_orig` is a numpy-array of shape (m_train, num_px, num_px, 3). For instance, you can access `m_train` by writing `train_set_x_orig.shape[0]`.
 
 # In[4]:
-
-### START CODE HERE ### (≈ 3 lines of code)
 m_train = train_set_x_orig.shape[0]
 m_test = test_set_x_orig.shape[0]
 num_px = train_set_x_orig.shape[2]
-### END CODE HERE ###
+
 
 print ("Number of training examples: m_train = " + str(m_train))
 print ("Number of testing examples: m_test = " + str(m_test))
@@ -140,10 +138,8 @@ print ("test_set_y shape: " + str(test_set_y.shape))
 
 # Reshape the training and test examples
 
-### START CODE HERE ### (≈ 2 lines of code)
 train_set_x_flatten = train_set_x_orig.reshape(train_set_x_orig.shape[0], -1).T
 test_set_x_flatten = test_set_x_orig.reshape(test_set_x_orig.shape[0], -1).T
-### END CODE HERE ###
 
 print ("train_set_x_flatten shape: " + str(train_set_x_flatten.shape))
 print ("train_set_y shape: " + str(train_set_y.shape))
@@ -237,12 +233,10 @@ test_set_x = test_set_x_flatten/255.
 # You often build 1-3 separately and integrate them into one function we call `model()`.
 # 
 # ### 4.1 - Helper functions
-# 
-# **Exercise**: Using your code from "Python Basics", implement `sigmoid()`. As you've seen in the figure above, you need to compute $sigmoid( w^T x + b) = \frac{1}{1 + e^{-(w^T x + b)}}$ to make predictions. Use np.exp().
+# Using your code from "Python Basics", implement `sigmoid()`. As you've seen in the figure above, you need to compute $sigmoid( w^T x + b) = \frac{1}{1 + e^{-(w^T x + b)}}$ to make predictions. Use np.exp().
 
 # In[7]:
 
-# GRADED FUNCTION: sigmoid
 
 def sigmoid(z):
     """
@@ -278,11 +272,9 @@ print ("sigmoid([0, 2]) = " + str(sigmoid(np.array([0,2]))))
 
 # ### 4.2 - Initializing parameters
 # 
-# **Exercise:** Implement parameter initialization in the cell below. You have to initialize w as a vector of zeros. If you don't know what numpy function to use, look up np.zeros() in the Numpy library's documentation.
+#Implement parameter initialization in the cell below. You have to initialize w as a vector of zeros. If you don't know what numpy function to use, look up np.zeros() in the Numpy library's documentation.
 
 # In[9]:
-
-# GRADED FUNCTION: initialize_with_zeros
 
 def initialize_with_zeros(dim):
     """
@@ -348,8 +340,6 @@ print ("b = "+ str(b))
 # $$ \frac{\partial J}{\partial b} = \frac{1}{m} \sum_{i=1}^m (a^{(i)}-y^{(i)})\tag{8}$$
 
 # In[11]:
-
-# GRADED FUNCTION: propagate
 
 def propagate(w, b, X, Y):
     """
@@ -431,8 +421,6 @@ print ("cost = " + str(cost))
 # **Exercise:** Write down the optimization function. The goal is to learn $w$ and $b$ by minimizing the cost function $J$. For a parameter $\theta$, the update rule is $ \theta = \theta - \alpha \text{ } d\theta$, where $\alpha$ is the learning rate.
 
 # In[42]:
-
-# GRADED FUNCTION: optimize
 
 def optimize(w, b, X, Y, num_iterations, learning_rate, print_cost = False):
     """
@@ -538,8 +526,6 @@ print ("db = " + str(grads["db"]))
 
 # In[44]:
 
-# GRADED FUNCTION: predict
-
 def predict(w, b, X):
     '''
     Predict whether the label is 0 or 1 using learned logistic regression parameters (w, b)
@@ -560,7 +546,6 @@ def predict(w, b, X):
     # Compute vector "A" predicting the probabilities of a cat being present in the picture
     ### START CODE HERE ### (≈ 1 line of code)
     A = sigmoid(np.dot(w.T,X)+b)
-    ### END CODE HERE ###
     
     for i in range(A.shape[1]):
         
@@ -570,7 +555,6 @@ def predict(w, b, X):
             Y_prediction[0][i]=0
         else:
             Y_prediction[0][i]=1
-        ### END CODE HERE ###
     
     assert(Y_prediction.shape == (1, m))
     
@@ -620,8 +604,6 @@ print ("predictions = " + str(predict(w, b, X)))
 
 # In[55]:
 
-# GRADED FUNCTION: model
-
 def model(X_train, Y_train, X_test, Y_test, num_iterations = 2000, learning_rate = 0.5, print_cost = False):
     """
     Builds the logistic regression model by calling the function you've implemented previously
@@ -639,8 +621,6 @@ def model(X_train, Y_train, X_test, Y_test, num_iterations = 2000, learning_rate
     d -- dictionary containing information about the model.
     """
     
-    ### START CODE HERE ###
-    
     # initialize parameters with zeros (≈ 1 line of code)
     w, b = initialize_with_zeros(X_train.shape[0])
 
@@ -654,8 +634,6 @@ def model(X_train, Y_train, X_test, Y_test, num_iterations = 2000, learning_rate
     # Predict test/train set examples (≈ 2 lines of code)
     Y_prediction_test = predict(w, b, X_test)
     Y_prediction_train = predict(w, b, X_train)
-
-    ### END CODE HERE ###
 
     # Print train/test Errors
     print("train accuracy: {} %".format(100 - np.mean(np.abs(Y_prediction_train - Y_train)) * 100))
