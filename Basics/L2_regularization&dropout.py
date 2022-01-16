@@ -8,22 +8,6 @@
 # **You will learn to:** Use regularization in your deep learning models.
 # 
 # Let's get started!
-
-# ## Table of Contents
-# - [1 - Packages](#1)
-# - [2 - Problem Statement](#2)
-# - [3 - Loading the Dataset](#3)
-# - [4 - Non-Regularized Model](#4)
-# - [5 - L2 Regularization](#5)
-#     - [Exercise 1 - compute_cost_with_regularization](#ex-1)
-#     - [Exercise 2 - backward_propagation_with_regularization](#ex-2)
-# - [6 - Dropout](#6)
-#     - [6.1 - Forward Propagation with Dropout](#6-1)
-#         - [Exercise 3 - forward_propagation_with_dropout](#ex-3)
-#     - [6.2 - Backward Propagation with Dropout](#6-2)
-#         - [Exercise 4 - backward_propagation_with_dropout](#ex-4)
-# - [7 - Conclusions](#7)
-
 # <a name='1'></a>
 # ## 1 - Packages
 
@@ -213,9 +197,6 @@ plot_decision_boundary(lambda x: predict_dec(parameters, x.T), train_X, train_Y)
 
 # In[8]:
 
-
-# GRADED FUNCTION: compute_cost_with_regularization
-
 def compute_cost_with_regularization(A3, Y, parameters, lambd):
     """
     Implement the cost function with L2 regularization. See formula (2) above.
@@ -261,9 +242,6 @@ compute_cost_with_regularization_test(compute_cost_with_regularization)
 # Implement the changes needed in backward propagation to take into account regularization. The changes only concern dW1, dW2 and dW3. For each, you have to add the regularization term's gradient ($\frac{d}{dW} ( \frac{1}{2}\frac{\lambda}{m}  W^2) = \frac{\lambda}{m} W$).
 
 # In[10]:
-
-
-# GRADED FUNCTION: backward_propagation_with_regularization
 
 def backward_propagation_with_regularization(X, Y, cache, lambd):
     """
@@ -406,9 +384,6 @@ plot_decision_boundary(lambda x: predict_dec(parameters, x.T), train_X, train_Y)
 # <a name='6-1'></a>
 # ### 6.1 - Forward Propagation with Dropout
 # 
-# <a name='ex-3'></a>
-# ### Exercise 3 - forward_propagation_with_dropout
-# 
 # Implement the forward propagation with dropout. You are using a 3 layer neural network, and will add dropout to the first and second hidden layers. We will not apply dropout to the input layer or output layer. 
 # 
 # **Instructions**:
@@ -437,9 +412,6 @@ plot_decision_boundary(lambda x: predict_dec(parameters, x.T), train_X, train_Y)
 # 4. Divide $A^{[1]}$ by `keep_prob`. By doing this you are assuring that the result of the cost will still have the same expected value as without drop-out. (This technique is also called inverted dropout.)
 
 # In[15]:
-
-
-# GRADED FUNCTION: forward_propagation_with_dropout
 
 def forward_propagation_with_dropout(X, parameters, keep_prob = 0.5):
     """
@@ -509,9 +481,6 @@ forward_propagation_with_dropout_test(forward_propagation_with_dropout)
 
 # <a name='6-2'></a>
 # ### 6.2 - Backward Propagation with Dropout
-# 
-# <a name='ex-4'></a>
-# ### Exercise 4 - backward_propagation_with_dropout
 # Implement the backward propagation with dropout. As before, you are training a 3 layer network. Add dropout to the first and second hidden layers, using the masks $D^{[1]}$ and $D^{[2]}$ stored in the cache. 
 # 
 # **Instruction**:
@@ -521,9 +490,6 @@ forward_propagation_with_dropout_test(forward_propagation_with_dropout)
 # 
 
 # In[30]:
-
-
-# GRADED FUNCTION: backward_propagation_with_dropout
 
 def backward_propagation_with_dropout(X, Y, cache, keep_prob):
     """
